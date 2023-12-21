@@ -30,7 +30,7 @@ namespace SaveFileFramework.Utils
         }
 
         // Add other methods as needed
-        public static void SavePluginVariables(SaveDataGarden instance)
+        public static void SavePluginVariables(ref ES3File es3File)
         {
             foreach (var modInfo in modInfoDictionary.Values)
             {
@@ -38,11 +38,11 @@ namespace SaveFileFramework.Utils
                 if (saveMethod != null)
                 {
                     // Invoke the Save method
-                    saveMethod.Invoke(modInfo.Instance, new object[] { instance.es3File });
+                    saveMethod.Invoke(modInfo.Instance, new object[] { es3File });
                 }
             }
 
-            instance.es3File.Sync();
+            es3File.Sync();
         }
 
         public static void LoadPluginVariables(ES3File file)

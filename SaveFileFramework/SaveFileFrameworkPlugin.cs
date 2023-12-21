@@ -2,6 +2,7 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
+using HarmonyLib.Tools;
 using SaveFileFramework.Utils;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace SaveFileFramework
         // 1.0.0
         private const string MyGUID = "com.nanopoison.SaveFileFramework";
         private const string PluginName = "SaveFileFramework";
-        private const string VersionString = "0.1.0";
+        private const string VersionString = "0.2.0";
 
         private static readonly Harmony Harmony = new Harmony(MyGUID);
         public static ManualLogSource Log = new ManualLogSource(PluginName);
@@ -34,6 +35,7 @@ namespace SaveFileFramework
             PluginInfo info = Info;
             ModRegistry.RegisterMod(info);
 
+            HarmonyFileLog.Enabled = true;
             Harmony.PatchAll();
 
             // set up strings
